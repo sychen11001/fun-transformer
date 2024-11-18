@@ -1,14 +1,48 @@
-# 项目名称
+# fun-transformer
+本课程完全从零开始，使用基础的Numpy等科学计算库实现Transformer，无需依赖任何深度学习框架，旨在深化学习者对模型本质的理解与掌握。
+课程涵盖了Transformer的核心组成部分，包含Transformer编码器和解码器的实现。
+课程通过解读代码，以及对知识点穿插Q&A问答，为学习者应用Transformer模型提供参考和借鉴。
+最后，使用Transformer模型实现在NLP任务中的应用，加深对模型的理解
 
-这里写项目的各类介绍信息，例如：
 
-- 项目背景、动机等简介内容
-- 项目内容目录
-- ....
 
-## Roadmap
+## 课程大纲
+| 章节  | 内容 | 备注|
+| ------------- | ------------- |------------- |
+| 第一章 | Transformer模型背景 |序列到序列(Seq2Seq)模型的发展；RNN与LSTM的局限性；Transformer的提出与影响 |
+| 第二章 | Encoder结构   ||
+|第三章   |Decoder结构||
+|第四章   | Transformer的训练过程|损失函数；优化算法；训练技巧与挑战|
+|第五章 |使用Numpy实现Transformer|手撕代码|
+|第六章   | Transformer模型在NLP中的应用|实践项目：案例分析与实验结果|
 
-*注：说明当前项目的规划，并将每个任务通过 Issue 形式进行对外进行发布。*
+## 目录
+第一章 Transformer模型背景
+- 序列到序列模型的发展
+- RNN与LSTM的局限性
+- Transformer的提出与影响
+
+第二章 Encoder结构
+- 自注意力机制(Self-Attention)
+- 多头注意力(Multi-Head Attention)
+-  位置编码(Positional Encoding)
+-  前馈神经网络(Feed-Forward Neural Network)
+-  层归一化(Layer Normalization)
+
+第三章 Decoder结构
+-  多头注意力 (Mask-Multi-Head-Attention
+- 编码器-解码器注意力(Encoder-Decoder Attention)
+- 解码器自注意力(Decoder Self-Attention)
+-  解码器输出层(Linear and Softmax to Produce Output Probabilities)
+
+第四章 Transformer的训练过程
+- 损失函数
+- 优化算法
+- 训练技巧与挑战
+  
+第五章 使用Numpy实现Transformer
+
+第六章 Transformer模型在NLP中的应用
 
 ## 参与贡献
 
@@ -22,11 +56,9 @@
 
 | 姓名 | 职责 | 简介 |
 | :----| :---- | :---- |
-| 小明 | 项目负责人 | 小明 |
-| 小红 | 第1章贡献者 | 小明的朋友 |
-| 小强 | 第2章贡献者 | 小明的朋友 |
+| 罗清泉 | 项目负责人 |  |
 
-*注：表头可自定义，但必须在名单中标明项目负责人*
+
 
 ## 关注我们
 
