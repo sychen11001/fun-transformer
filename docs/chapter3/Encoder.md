@@ -1,8 +1,3 @@
----
-title: 我是2.1的标题
-
----
-
 # 1. 编码器(Encoder)
 ## 1.1 Encoder 工作流程
 Encoder 部分由6个相同的子模块组成，按顺序连接。子模块中的第一个 Encoder从 嵌入（Input Embedding）和为位置编码（Positon Embedding ）接收输入（inputs）。子模块中的其他 Encoder 从**前一个 Encoder** 接收输入（inputs）。
