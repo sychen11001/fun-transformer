@@ -1,48 +1,47 @@
 # fun-transformer
-本课程完全从零开始，使用基础的Numpy等科学计算库实现Transformer，无需依赖任何深度学习框架，旨在深化学习者对模型本质的理解与掌握。
-课程涵盖了Transformer的核心组成部分，包含Transformer编码器和解码器的实现。
-课程通过解读代码，以及对知识点穿插Q&A问答，为学习者应用Transformer模型提供参考和借鉴。
+本课程涵盖了Transformer的核心组成部分，包含Transformer编码器和解码器的实现。
+课程结合代码解读知识点，同时通过形象生动的例子，为学习者理解Transformer模型提供参考和借鉴。
+实践项目无需依赖任何深度学习框架，完全从零开始，使用基础的Numpy等科学计算库实现Transformer，旨在深化学习者对模型本质的理解与掌握。
 最后，使用Transformer模型实现在NLP任务中的应用，加深对模型的理解
 
 
-
 ## 课程大纲
-| 章节  | 内容 | 备注|
+| 章节  | 内容 | 代码实现|
 | ------------- | ------------- |------------- |
-| 第一章 | Transformer模型背景 |序列到序列(Seq2Seq)模型的发展；RNN与LSTM的局限性；Transformer的提出与影响 |
-| 第二章 | Encoder结构   ||
-|第三章   |Decoder结构||
-|第四章   | Transformer的训练过程|损失函数；优化算法；训练技巧与挑战|
-|第五章 |使用Numpy实现Transformer|手撕代码|
-|第六章   | Transformer模型在NLP中的应用|实践项目：案例分析与实验结果|
+| 第一章 | 引言 |词嵌入|
+| 第二章 | Transformer简述 |   相对位置向量  |
+| 第三章 | Encoder结构   | 交叉注意力     |
+|第四章   |Decoder结构| bert、gpt      |
+|第五章 |项目实践| 项目案例、使用Numpy实现Transformer|
 
 ## 目录
-第一章 Transformer模型背景
-- 序列到序列模型的发展
-- RNN与LSTM的局限性
-- Transformer的提出与影响
+第一章 引言
+- 1. 序列到序列（Seq2Seq）模型概述
+- 2. Encoder-Decoder模型概述
+- 3. Attention 的提出与影响
 
-第二章 Encoder结构
-- 自注意力机制(Self-Attention)
-- 多头注意力(Multi-Head Attention)
--  位置编码(Positional Encoding)
--  前馈神经网络(Feed-Forward Neural Network)
--  层归一化(Layer Normalization)
+第二章 Transformer简述
+- 1. Attention 机制
+- 2. Transformer概述
+- 3. Transformer vs CNN vs RNN
+- 4. 输入嵌入(Input Embedding)
 
-第三章 Decoder结构
--  多头注意力 (Mask-Multi-Head-Attention
-- 编码器-解码器注意力(Encoder-Decoder Attention)
-- 解码器自注意力(Decoder Self-Attention)
--  解码器输出层(Linear and Softmax to Produce Output Probabilities)
+第三章 Encoder结构
+-  1. 编码器(Encoder)
+- 2. 多头自注意力(Multi-Head Self-Attention)
+- 3. 交叉自注意力(Cross Attention)
+- 4. Cross Attention 和 Self Attention 主要的区别
 
-第四章 Transformer的训练过程
-- 损失函数
-- 优化算法
-- 训练技巧与挑战
+第四章 Decoder结构
+- 1. 解码器(Decoder)
+- 2. 掩码(Mask)
+- 3. 模型的训练与评估
+- 4. 高级主题和应用
   
-第五章 使用Numpy实现Transformer
+第五章 Project
+- 1. 项目案例
+- 2. 使用Numpy实现Transformer
 
-第六章 Transformer模型在NLP中的应用
 
 ## 参与贡献
 
