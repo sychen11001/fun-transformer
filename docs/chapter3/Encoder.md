@@ -2,7 +2,7 @@
 ## 1.1 Encoder 工作流程
 Encoder 部分由6个相同的子模块组成，按顺序连接。子模块中的第一个 Encoder从 嵌入（Input Embedding）和为位置编码（Positon Embedding ）接收输入（inputs）。子模块中的其他 Encoder 从**前一个 Encoder** 接收输入（inputs）。
 
-[图片]
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image1.PNG)
 
 Encoder 将其输入传递到多头自注意力层。自注意力输出被传递到前馈层，然后**前馈层**（**Feedforward layer**）将其输出向上发送到下一个编码器。
 
@@ -12,7 +12,7 @@ Encoder 将其输入传递到多头自注意力层。自注意力输出被传递
 ## 1.2 Encoder 组成成分
 每个子模块就是下面图中右侧那个方块了。包含几个子部分：
 
-[图片]
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image2.PNG)
 
 - Multi-Head Attention
 - Residual connection
@@ -21,7 +21,7 @@ Encoder 将其输入传递到多头自注意力层。自注意力输出被传递
 
 
 
-[图片]
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image3.PNG)
 
 在 Transformer 模型中，Encoder 部分由多个相同的 Encoder Layer 堆叠而成，每个 Encoder Layer 包含两个主要子层，分别是 **Multi-Head Self-Attention 和 Position-wise Feed-Forward Network。**
 
@@ -44,22 +44,25 @@ Q、K 和 V 分别代表 Query（查询）、Key（键）和 Value（值）。�
 ## 2.1 缩放点积注意力(Scaled Dot-Product Attention)
 self-attention 的输入是序列词向量，此处记为 x。而 x 经过一个线性变换得到 query(Q), x经过第二个线性变换得到 key(K),  x经过第三个线性变换得到 value(V)。
     
-    tu
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image4.png)
     
 也就是说，Q、K、V 都是对输入 x 的线性映射：
 - query = linear_q(x)
 - key = linear_k(x)
 - value = linear_v(x)
     
-    tu
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image5.png)
     
 > “查询、键和值的概念来自检索系统。例如，当您键入查询以在 Youtube 上搜索某些视频时，搜索引擎会将您的查询与数据库中与候选视频相关的一组键（视频标题、描述等）进行映射，然后向您显示最匹配的视频（值）。
     
-    tu
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image6.png)
     
-注意：这里的 linear_q(x)，linear_k(x)，linear_v(x) 相互独立，通过 softmax 函数对 Query（Q）和 Key（K）向量缩放点积的分数进行归一化，得到权重系数（attention weights），值都介于0到1之间。按照公式：$$Attention(Q, K, V)=softmax(\frac{QK^T}{\sqrt{d_k}})V$$， 使用权重系数对Value（V）向量进行加权求和，得到最终的注意力输出 Attention(Q, K, V)。 
+注意：这里的 linear_q(x)，linear_k(x)，linear_v(x) 相互独立，通过 softmax 函数对 Query（Q）和 Key（K）向量缩放点积的分数进行归一化，得到权重系数（attention weights），值都介于0到1之间。按照公式：
+$Attention(Q, K, V)=softmax(\frac{QK^T}{\sqrt{d_k}})V$
+使用权重系数对Value（V）向量进行加权求和，得到最终的注意力输出 Attention(Q, K, V)。 
 
 ### 2.1.1 如何得到缩放因子
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image7.png)
 在多头注意力机制中，参数 $d_k$ (每个头的维度）通常是由总的模型维度 $d_{model}$ 和多头注意力的头数 (h) 决定的。具体来说，$d_k$ 通常是这样计算的：$d_k=\frac{d_{\mathrm{model}}}h$
 
 这样做有几个原因：
@@ -80,19 +83,35 @@ self-attention 的输入是序列词向量，此处记为 x。而 x 经过一个
     
 ## 2.2 多头注意力机制(Multi-Head Attention)
     
-    tu
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image8.png)
     
 多头(Multi-Head) 的方式是将**多个 head 的输出 z**，进行**拼接**（**concat**）后，通过线性变换得到**最后的输出 z**。
     
-    tu
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image9.png)
     
-Multi-Head Attention把Q,K,V通过参数矩阵映射，然后再做Attention，把这个过程重复做 h 次，结果拼接起来。具体用公式表达：$$head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$$
-其中 $$W_i^Q\text{、}W_i^K\text{、}W_i^V$$ 的权重矩阵的维度分别为 $$(d_{k}\times\tilde{d}_{k})\text{、}(d_{k}\times\tilde{d}_{k})\text{、}(d_{v}\times\tilde{d}_{v})$$ 然后$$MultiHead(Q,K,V)=Concat(head_1,\ldots,head_h)$$最后得到一个$$n\times(h\tilde{d}_v)\text{}$$的序列，所谓Multi-Head(多头)，就是只多做几次同样的事情（**参数不共享**），然后把结果拼接。
+Multi-Head Attention把Q,K,V通过参数矩阵映射，然后再做Attention，把这个过程重复做 h 次，结果拼接起来。<p>
+具体用公式表达：
+$head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$
+其中
+$W_i^Q\text{、}W_i^K\text{、}W_i^V$ 
+的权重矩阵的维度分别为<p>
+<p>$(d_{k}\times\tilde{d}_{k})\text{、}(d_{k}\times\tilde{d}_{k})\text{、}(d_{v}\times\tilde{d}_{v})$ <p>
+然后通过
+
+$MultiHead(Q,K,V)=Concat(head_1,\ldots,head_h)$
+
+最后得到一个 
+
+$n\times(h\tilde{d}_v)\text{}$ 
+
+维度的序列，所谓Multi-Head(多头)，就是只多做几次同样的事情（**参数不共享**），然后把结果拼接。
     
 **其中需要注意的是**<p>
 (1) 不同的 head 的矩阵是不同的
     
-(2) multi-head-Attention可以并行计算，Google论文里，$$h=8\text{, }d_k=d_v=d_{model}/4=64$$
+(2) multi-head-Attention可以并行计算，Google论文里
+$h=8\text{, }d_k=d_v=d_{model}/4=64$
+
 一般来说一个多头 attention 的效果要优于单个 attention。按照Google官方的说法，这么做形成多个子空间，可以让模型关注不同方面的信息，体现出差异性。<p>
 但有实验表明，头之间的差距随着所在层数变大而减小，因此这种差异性是否是模型追求的还不一定。
 至于头数 h 的设置，并不是越大越好，到了某一个数就没效果了。
@@ -113,11 +132,13 @@ Multi-Head Attention把Q,K,V通过参数矩阵映射，然后再做Attention，�
 2. MaskedDecoder Self-Attention ：Decoder 阶段捕获当前 word 与已经看到的解码词之间的关联，从矩阵上直观来看就是一个带有 mask 的三角矩阵；
 3. Encoder-Decoder Attention：就是将 Decoder 和 Encoder 输入建立联系，和之前那些普通 Attention 一样；
     
-    tu-
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter3/images/C3image10.png)
     
 在Google的论文中，大部分的 Attention 都是Self Attention，即“**自注意力**”，或者叫内部注意力。也就是说，在序列内部做 Attention，寻找序列内部的联系。体现在公式上就是**Attention(X,X,X)，X是输入序列。**<p>
-内部注意力在机器翻译（甚至是一般的Seq2Seq任务）的序列编码上是相当重要的，而之前关于Seq2Seq的研究基本都只是把注意力机制用在解码端。<p>
-更准确来说，Google所用的是Self Multi-Head Attention：$$Y=MultiHead(X,X,X)$$，Multi-Head-Attention 就是将 embedding之后的 X 按维度 d_model=512  切割成 h=8 个，分别做self-attention 之后再合并在一起。
+内部注意力在机器翻译（甚至是一般的Seq2Seq任务）的序列编码上是相当重要的，而之前关于 Seq2Seq 的研究基本都只是把注意力机制用在解码端。<p>
+更准确来说，Google所用的是 Self Multi-Head Attention：
+$Y=MultiHead(X,X,X)$
+Multi-Head-Attention 就是将 embedding之后的 X 按维度 d_model=512  切割成 h=8 个，分别做self-attention 之后再合并在一起。
 
 ### 2.3.1自注意力的工作原理
 考虑一句话：“The cat sat on the mat.”<p>
@@ -154,7 +175,11 @@ RNN 需要一步步递推才能捕捉到，而 CNN 则需要通过层叠来扩�
 Add & Norm : 是指将**残差连接（Addition）和归一化（Normalization）结合在一起**的操作，用于提高训练过程中的稳定性和性能<p>
 **1. 残差连接（Add）**
   - 残差连接是一种常见的深度学习技巧，它通过将子层的输出添加到其输入上来实现。这样可以形成一个短路，允许梯度直接流过网络层，有助于缓解深层网络中的梯度消失问题。
-  - 数学上，残差连接可以表示为：$$\mathrm{Residual}=x+\mathrm{SubLayer}(x)$$其中 $x$ 是子层的输入，${SubLayer}(x)$ 是子层的输出。<p>
+  - 数学上，残差连接可以表示为：
+    $\mathrm{Residual}=x+\mathrm{SubLayer}(x)$
+    其中 $x$ 是子层的输入
+    ${SubLayer}(x)$
+    是子层的输出。<p>
       
 **2. 层归一化（Norm）**<p>
   **(1)独立归一化**<p>
@@ -171,21 +196,32 @@ Add & Norm : 是指将**残差连接（Addition）和归一化（Normalization�
   层归一化不依赖于批次大小，因此在处理不同大小的批次时，不需要调整超参数，这使得层归一化更加灵活。
      
 **将这两个操作结合在一起，“Add & Norm” 的步骤如下：**
-1. 计算子层的输出：$${SubLayer}(x)$$
-2. 执行残差连接：$$\mathrm{Residual}=x+\mathrm{SubLayer}(x)$$
-3. 应用层归一化：$$\mathrm{Output}=\text{Layer}\mathrm{Norm}(\text{Residual})$$
+1. 计算子层的输出：
+   ${SubLayer}(x)$
+2. 执行残差连接：
+   $\mathrm{Residual}=x+\mathrm{SubLayer}(x)$
+3. 应用层归一化：
+   $\mathrm{Output}=\text{Layer}\mathrm{Norm}(\text{Residual})$
 <p>所以，“Add & Norm” 的整个过程可以表示为：
     
-$$\mathrm{Output}=\text{LayerNorm}(x+\mathrm{SubLayer}(x))$$
+$\mathrm{Output}=\text{LayerNorm}(x+\mathrm{SubLayer}(x))$
 
 输入的 x 序列经过 “Multi-Head Self-Attention” 之后实际经过一个“Add & Norm”层，再进入“feed-forward network”(后面简称FFN)，在FFN之后又经过一个norm再输入下一个encoder layer。
 注意：几乎每个子层都会经过一个归一化操作，然后再将其加在原来的输入上，这个过程被称为**残余连接**（**Residual Connection**）
     
 ## 2.4  前馈全连接网络(Position-wise Feed-Forward Networks)
 **前馈全连接网络(FFN )层实际上就是一个线性变换层**，用来完成输入数据到输出数据的维度变换。FFN层是一个顺序结构：包括一个**全连接层(FC) + ReLU 激活层 + 第二个全连接层(FC)**，通过在两个 FC 中间添加非线性变换，增加模型的表达能力，使模型能够捕捉到复杂的特征和模式。<p>
-$$FFN(x)=max(0,xW_1+b_1)W_2+b_2$$
-上式中，$$xW_1+b_1$$ 为第一个全连接层的计算公式，$$max(0,xW_1+b_1)W_2$$ 为 relu 的计算公式，$$max(0,xW_1+b_1)W_2+b_2$$则为第二个全连接层的计算公式。
-全连接层线性变换的主要作用为数据的升维和降维，$W_1$ 的维度是(2048，512)，$W_2$ 是 (512，2048)。 即**先升维，后降维**，这是为了扩充中间层的表示能力，从而抵抗 ReLU 带来的模型表达能力的下降。
+$FFN(x)=max(0,xW_1+b_1)W_2+b_2$
+上式中，$xW_1+b_1$ 为第一个全连接层的计算公式
+$max(0,xW_1+b_1)W_2$ 
+为 relu 的计算公式
+$max(0,xW_1+b_1)W_2+b_2$
+则为第二个全连接层的计算公式。
+全连接层线性变换的主要作用为数据的升维和降维
+$W_1$ 
+的维度是(2048，512)
+$W_2$ 
+是 (512，2048)。 即**先升维，后降维**，这是为了扩充中间层的表示能力，从而抵抗 ReLU 带来的模型表达能力的下降。
     
 # 3. Cross Attention
 ## 3.1 Cross attention简述
