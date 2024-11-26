@@ -306,8 +306,8 @@ free-running 下如果一开始生成"an"，之后作为输入来生成下一个
 - 它将生成的翻译与一个或多个由人类翻译人员提供的参考翻译进行比较。
 - BLEU分数范围从0到1，较高的分数表示更好的翻译质量。
 
-# 八、高级主题和应用
-## 8.1 BERT（来自 Transformers 的双向编码器表示）
+# 四、高级主题和应用
+## 4.1 BERT（来自 Transformers 的双向编码器表示）
 BERT 是一个具有里程碑意义的基于 Transformer 的模型，在 NLP 领域产生了深远影响。它通过掩码语言建模和下一句预测等目标，在大规模文本语料库上进行预训练。BERT 学习了单词的深层上下文表示，捕捉双向上下文，使其在广泛的下游 NLP 任务中表现良好。
 
 ```
@@ -320,7 +320,7 @@ inputs = tokenizer("Hello, world!", return_tensors="pt")
 outputs = model(**inputs)
 print(outputs)
 ```
-## 8.2 GPT（生成式预训练 Transformer）
+## 4.2 GPT（生成式预训练 Transformer）
 GPT 是一个基于 Transformer 的模型，以其生成能力而闻名。与双向的 BERT 不同，GPT 采用仅解码器的架构和自回归训练来生成连贯且上下文相关的文本。研究人员和开发人员已经成功地将 GPT 应用于各种任务，如文本完成、摘要、对话生成等。
     
 ```
