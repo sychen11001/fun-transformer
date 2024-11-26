@@ -272,3 +272,14 @@ Attention 的核心工作就是“**关注重点**”。在特定场景下，解
 1. **参数少**：模型复杂度跟 CNN、RNN 相比，复杂度更小，参数也更少。所以对算力的要求也就更小。
 2. **速度快**：Attention 解决了 RNN 不能并行计算的问题。Attention机制每一步计算不依赖于上一步的计算结果，因此可以和CNN一样并行处理。
 3. **效果好**：在 Attention 机制引入之前，有一个问题大家一直很苦恼：长距离的信息会被弱化，就好像记忆能力弱的人，记不住过去的事情是一样的。
+
+# 4. 参考链接
+1、https://huggingface.co/docs/transformers/model_doc/vit
+
+2、Attention用于NLP的一些小结：https://zhuanlan.zhihu.com/p/35739040
+
+3、遍地开花的 Attention，你真的懂吗？：https://zhuanlan.zhihu.com/p/77307258
+
+4、熊猫图片来源：http://www.dili360.com/article/p5e8187a77f0c415.htm
+
+5、https://tech.dewu.com/article?id=109
