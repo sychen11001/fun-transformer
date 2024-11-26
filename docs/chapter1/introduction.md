@@ -4,7 +4,7 @@
 Seq2Seq模型，全称Sequence to Sequence模型，就如字面意思，输入一个序列，输出另一个序列。这种结构最重要的地方在于输入序列和输出序列的长度是可变的。
 
 
-![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/Figure1.PNG)
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%EF%BC%881%EF%BC%89.PNG)
 
 - <bos>：Begin Of Sequence（BOS）
 - <eos>：End Of Sequence（EOS）
@@ -13,7 +13,7 @@ Seq2Seq模型，全称Sequence to Sequence模型，就如字面意思，输入�
 
 如上图，输入了**5**个汉字，输出了**4**个英文单词。输入和输出的长度不同。在处理可变长度的序列时，使用 BOS 和 EOS 可以减少对 **填充**（**padding**）的依赖，因为模型可以根据这些标记来识别序列的边界。
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%EF%BC%882%EF%BC%89.png)
     
 Seq2Seq模型在概念上还与通信原理有一定的相似性，特别是在信息编码、传输和解码的过程中。
 
@@ -176,7 +176,7 @@ Decoder 又称作解码器，他的作用是“求解数学问题，并转化为
 ### 2.2.4 小故事讲解
 Encoder-Decoder 的工作原理：想象一下，你有一个翻译笔，它能够把一种语言翻译成另一种语言。
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(3).png)
     
 编码器（Encoder）的工作： 
 - 这个翻译笔的第一步是“阅读”你输入的句子。它一个词一个词地看，一边看一边记下重要的信息。当它看完整个句子后，它会把所有重要的信息总结成一个简短的笔记，这个笔记就是我们说的“**上下文向量**”。
@@ -188,32 +188,32 @@ Encoder-Decoder 的工作原理：想象一下，你有一个翻译笔，它能�
 
 ## 2.3 Encoder-Decoder 的应用
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(4).png)
     
 **机器翻译、对话机器人、诗词生成、代码补全、文章摘要（文本 – 文本）**<p>
 “文本 – 文本” 是最典型的应用，其输入序列和输出序列的长度可能会有较大的差异。<p>
 Google 发表的用Seq2Seq做机器翻译的论文《Sequence to Sequence Learning with Neural Networks》
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(5).png)
 
 **语音识别（音频 – 文本）**<p>
 语音识别也有很强的序列特征，比较适合 Encoder-Decoder 模型。<p>
 Google 发表的使用Seq2Seq做语音识别的论文《A Comparison of Sequence-to-Sequence Models for Speech Recognition》
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(6).png)
 
 **图像描述生成（图片 – 文本）**<p>
 通俗的讲就是“看图说话”，机器提取图片特征，然后用文字表达出来。这个应用是计算机视觉和 NLP 的结合。<p>
 图像描述生成的论文《Sequence to Sequence – Video to Text》
-    
-**[图片]**
+  
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(7).png)
 
 
 ## 2.4 Encoder-Decoder 的缺陷
 上文提到：Encoder（编码器）和 Decoder（解码器）之间只有一个固定长度的“上下文向量 ”来传递信息。为了便于理解，我们类比为“压缩-解压”的过程：<p>
 将一张 800X800 像素的图片压缩成 100KB，看上去还比较清晰。再将一张 3000X3000 像素的图片也压缩到 100KB，看上去就模糊了（尤其是图片中的配文）。
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%EF%BC%888%EF%BC%89.png)
     
 Encoder-Decoder 就是面临类似的问题：当输入信息太长时，会丢失掉一些信息。
     
@@ -221,12 +221,12 @@ Encoder-Decoder 就是面临类似的问题：当输入信息太长时，会丢�
 # 3. Attention 的提出与影响
 ## 3.1 Attention的发展历程
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image(9).png)
 
 | 时间 | 发展 | 描述 |
 |------|------|------|
 | 早期 | 循环神经网络（RNNs）<br><br>长短期记忆网络（LSTMs）| RNNs能够处理变长的序列数据，但由于梯度消失和梯度爆炸问题，它们在长序列上的表现并不理想。<br> <br>LSTMs是对RNNs的改进，通过引入门控机制来解决长序列学习中的梯度消失问题。|
-| 2014年 | Seq2Seq模型的提出<br>[链接](https://arxiv.org/pdf/1409.3215)  | Seq2Seq模型由一个编码器和一个解码器组成，两者都是基于LSTM。该模型在机器翻译任务上取得了显著的成功。<br><br>**历史地位**:<br>  - 首次引入了编码器-解码器框架;<br>- 端到端的学习成为可能;<br>- 中间产生了上下文向量，把编码过程和解码过程进行了解耦。 |
+| 2014年 | Seq2Seq模型的提出<br>  | Seq2Seq模型由一个编码器和一个解码器组成，两者都是基于LSTM。该模型在机器翻译任务上取得了显著的成功。<br><br>**历史地位**:<br>  - 首次引入了编码器-解码器框架;<br>- 端到端的学习成为可能;<br>- 中间产生了上下文向量，把编码过程和解码过程进行了解耦。 |
 | 2015年 | 注意力机制的引入| 在Seq2Seq模型的基础上，Bahdanau等人提出了带注意力机制的Seq2Seq模型。|
 | 2017年 | 自注意力与Transformer模型 | Transformer模型完全基于自注意力机制，摒弃了传统的循环网络结构，在处理长距离依赖方面表现卓越。 |
 | 2018年 | 多头注意力与BERT | Transformer模型进一步发展为多头注意力机制，并在BERT模型中得到应用，BERT在多项NLP任务上取得了突破性的成果。 |
@@ -247,7 +247,7 @@ Encoder-Decoder 就是面临类似的问题：当输入信息太长时，会丢�
 Ａttention 模型的特点是 Encoder 不再将整个输入序列编码为固定长度的“向量C” ，而是编码成一个向量（Context vector）的序列（“C1”、“C2”、“C3”），解决“信息过长，信息丢失”的问题。<p>
 引入了 Ａttention 的 Encoder-Decoder 模型如下图：
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%EF%BC%8810%EF%BC%89.png)
     
 这样，在产生每一个输出的时候，都能够做到充分利用输入序列携带的信息。
     
@@ -262,7 +262,7 @@ Attention 的核心工作就是“**关注重点**”。在特定场景下，解
 2. 有效信息：画面中心位置
 3. 无效信息：画面的边边角角、底色、花纹等等
     
-**[图片]**
+![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%20(11).png)
     
 在图片上，我们的视线聚焦在**熊猫**及其攀爬的**树干**，熊猫和树干在这个区域内非常清晰，在此之外的区域则相对模糊，表示其他景物（例如熊猫背后的山林）没有被“注意力”所关注。这样的图像就能够直观地展示注意力机制是如何在众多信息中挑选出关键部分进行重点处理的。
 如上面所说的，我们的视觉系统就是一种 Attention机制，**将有限的注意力集中在重点信息上，从而节省资源，快速获得最有效的信息。**
