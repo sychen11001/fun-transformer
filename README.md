@@ -2,7 +2,7 @@
 本课程涵盖了Transformer的核心组成部分，包含Transformer编码器和解码器的实现。
 课程结合代码解读知识点，同时通过形象生动的例子，为学习者理解Transformer模型提供参考和借鉴。
 实践项目无需依赖任何深度学习框架，完全从零开始，使用基础的Numpy等科学计算库实现Transformer，旨在深化学习者对模型本质的理解与掌握。
-最后，使用Transformer模型实现在NLP任务中的应用，加深对模型的理解
+最后，使用Transformer模型实现在机器翻译任务中的应用，加深对模型的理解
 
 
 ## 课程大纲
@@ -12,7 +12,7 @@
 | 第二章 | Transformer简述 |   相对位置向量  |
 | 第三章 | Encoder结构   | 交叉注意力     |
 |第四章   |Decoder结构| bert、gpt      |
-|第五章 |项目实践| 项目案例、Transformer结构拆解、使用 NumPy 和 SciPy 实现通用注意力机制|
+|第五章 |项目实践| 机器翻译项目案例、Transformer结构拆解、使用 NumPy 和 SciPy 实现通用注意力机制|
 
 ## 目录
 第一章 引言
