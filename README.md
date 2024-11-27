@@ -12,7 +12,7 @@
 | 第二章 | Transformer简述 |   相对位置向量  |
 | 第三章 | Encoder结构   | 交叉注意力     |
 |第四章   |Decoder结构| bert、gpt      |
-|第五章 |项目实践| 项目案例、使用Numpy实现Transformer|
+|第五章 |项目实践| 项目案例、Transformer结构拆解、使用 NumPy 和 SciPy 实现通用注意力机制|
 
 ## 目录
 第一章 引言
