@@ -6,10 +6,11 @@ Seq2Seq模型，全称Sequence to Sequence模型，就如字面意思，输入�
 
 ![images](https://github.com/Spr1ng7/fun-transformer/blob/main/docs/chapter1/images/image%EF%BC%881%EF%BC%89.PNG)
 
-- <bos>：Begin Of Sequence（BOS）
-- <eos>：End Of Sequence（EOS）
-- “BOS I have a pen EOS”，在这里，**BOS** 和 **EOS** 分别标记句子的开始和结束。
-    
+```
+<bos>：Begin Of Sequence（BOS）
+<eos>：End Of Sequence（EOS）
+“BOS I have a pen EOS”，在这里，BOS 和 EOS 分别标记句子的开始和结束。
+```  
 
 如上图，输入了**5**个汉字，输出了**4**个英文单词。输入和输出的长度不同。在处理可变长度的序列时，使用 BOS 和 EOS 可以减少对 **填充**（**padding**）的依赖，因为模型可以根据这些标记来识别序列的边界。
     
