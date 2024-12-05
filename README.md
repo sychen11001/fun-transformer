@@ -8,41 +8,42 @@
 ## 课程大纲
 | 章节  | 内容 | 代码实现|
 | ------------- | ------------- |------------- |
-| 第一章 | 引言 |词嵌入|
-| 第二章 | Transformer简述 |   相对位置向量  |
-| 第三章 | Encoder结构   | 交叉注意力     |
-|第四章   |Decoder结构| bert、gpt      |
+| 第一章 | 引言[introduction](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter1/introduction.md) |词嵌入[低维映射到高维](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter1/低维映射到高维.ipynb)|
+| 第二章 | Transformer简述[introduction](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter1/introduction.md) |  相对位置向量[相对位置向量](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter2/相对位置向量.ipynb)  |
+| 第三章 | Encoder结构[Encoder](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter3/Encoder.md)   | 交叉注意力[Cross-Attention](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter3/Cross-Attention.ipynb)      |
+|第四章   |Decoder结构[Decoder](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter4/Decoder.md)| bert[apply-bert](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter4/apply-bert.ipynb)、gpt[apply-gpt](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter4/apply-gpt.ipynb)      |
 |第五章 |项目实践| 机器翻译项目案例、Transformer结构拆解、使用 NumPy 和 SciPy 实现通用注意力机制|
 
 ## 目录
-第一章 引言
+第一章 引言[introduction](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter1/introduction.md)
 - 1. 序列到序列（Seq2Seq）模型概述
 - 2. Encoder-Decoder模型概述
 - 3. Attention 的提出与影响
 
-第二章 Transformer简述
+第二章 Transformer简述[Transformer](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter2/Transformer.md)
 - 1. Attention 机制
 - 2. Transformer概述
 - 3. Transformer vs CNN vs RNN
 - 4. 输入嵌入(Input Embedding)
 
-第三章 Encoder结构
+第三章 Encoder结构[Encoder](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter3/Encoder.md)
 -  1. 编码器(Encoder)
 - 2. 多头自注意力(Multi-Head Self-Attention)
 - 3. 交叉自注意力(Cross Attention)
 - 4. Cross Attention 和 Self Attention 主要的区别
 
-第四章 Decoder结构
+第四章 Decoder结构[Decoder](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter4/Decoder.md)
 - 1. 解码器(Decoder)
 - 2. 掩码(Mask)
 - 3. 模型的训练与评估
 - 4. 高级主题和应用
   
 第五章 Project
-- 1. 项目案例
-- 2. 使用Numpy实现Transformer
-
-
+- 1. 项目案例[实践项目](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter5/实践项目.ipynb)
+- 2. 使用NumPy和SciPy实现通用注意力机制[使用NumPy和SciPy实现通用注意力机制](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter5/%E4%BD%BF%E7%94%A8%20NumPy%20%E5%92%8C%20SciPy%20%E5%AE%9E%E7%8E%B0%E9%80%9A%E7%94%A8%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.ipynb)
+- 3. 一键运行Transformer板块[Transformer组件实现](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter5/Transformer组件实现.ipynb)
+- 4. Multi-head attention[多头注意力机制](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter5/多头注意力机制.ipynb)
+- 5. Self attention[自注意力机制实现](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter5/自注意力机制实现.ipynb)
 ## 参与贡献
 
 - 如果你想参与到项目中来欢迎查看项目的 [Issue]() 查看没有被分配的任务。
