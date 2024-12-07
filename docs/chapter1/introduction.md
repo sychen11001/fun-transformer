@@ -283,3 +283,5 @@ Attention 的核心工作就是“**关注重点**”。在特定场景下，解
 4、熊猫图片来源：http://www.dili360.com/article/p5e8187a77f0c415.htm
 
 5、https://tech.dewu.com/article?id=109
+
+6、B站李沐老师关于深度学习讲解：https://space.bilibili.com/1567748478

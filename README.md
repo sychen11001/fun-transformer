@@ -25,6 +25,7 @@
 - 2. Transformer概述
 - 3. Transformer vs CNN vs RNN
 - 4. 输入嵌入(Input Embedding)
+- 5. Multi-Head Attention vs Multi-Head Self-Attention
 
 第三章 Encoder结构[Encoder](https://github.com/datawhalechina/fun-transformer/blob/main/docs/chapter3/Encoder.md)
 -  1. 编码器(Encoder)
