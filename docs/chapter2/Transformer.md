@@ -190,18 +190,18 @@ Self-Attention：考虑到 n 个 key 和 n 个 query 两两点乘，每层计算
 RNN：考虑到矩阵(维度为n∗n)和输入向量相乘，每层计算复杂度为 $O(n*d^2)$
 
 CNN：对于k个卷积核经过n次一维卷积，每层计算复杂度为 
-    $\ O(k \times n \times d^2) \$
+    $O(k \times n \times d^2) $
 深度可分离卷积：每层计算复杂度为为
-     $\ O(k \cdot n \cdot d + n \cdot d^2) \ $
+     $O(k \cdot n \cdot d + n \cdot d^2) $
     
 因此：
 当 $n\leq d\text{}$ 时，self attention 要比 RNN 和 CNN 快，这也是大多数常见满足的条件。
 
 当 $n>d$ 时，可以使用受限 self attention，即：计算 attention时仅考虑每个输出位置附近窗口的 r 个输入。这带来两个效果：
 - 每层计算复杂度降为为
-      $\ O(r \times n \times d) \$
+      $O(r \times n \times d) $
     
-- 最长学习距离降低为 r，因此需要执行为  $\ O\left(\frac{n}{r}\right) \ $次才能覆盖到所有输入。
+- 最长学习距离降低为 r，因此需要执行为  $O\left(\frac{n}{r}\right) $次才能覆盖到所有输入。
     
 ## 3.2 并行操作数量
 可以通过必须串行的操作数量来描述
@@ -247,8 +247,7 @@ Encoder 的输入包含**词向量**(**Word Embedding **)和**位置向量**(**P
 ### 4.2.1 具有位置信息的编码实现
 以往的位置向量是通过学习获得的，Google在论文中提到，他们比较过直接训练出来的位置向量和下面公式计算出来的位置向量，两者效果是接近的。我们这里选用公式构造的Position Embedding了，**优点**是不需要训练参数，而且即使在训练集中没有出现过的句子长度上也能用。<p>
 Positional Encoding的公式如下：
-  $$\mathrm{PE}_{(pos,2i)}=\sin\left(\frac{pos}{10000^{2i/d_{\mathrm{model}}}}\right)\\
-$$                
+  $$\mathrm{PE}_{(pos,2i)}=\sin\left(\frac{pos}{10000^{2i/d_{\mathrm{model}}}}\right)$$                
 
 $$\mathrm{PE}_{(pos,2i+1)}=\cos\left(\frac{pos}{10000^{2i/d_{\mathrm{model}}}}\right)$$
     
